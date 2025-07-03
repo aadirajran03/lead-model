@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Lead</title></head>
+<body>
+<h2>Add New Lead</h2>
+<form method="post">
+  Name: <input type="text" name="name" required><br>
+  Email: <input type="email" name="email" required><br>
+  Category:
+  <select name="category">
+    <option value="cold">Cold</option>
+    <option value="warm">Warm</option>
+    <option value="hot">Hot</option>
+  </select><br>
+  Priority:
+  <select name="priority">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select><br>
+  Next Follow-up: <input type="date" name="next_follow_up"><br><br>
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>

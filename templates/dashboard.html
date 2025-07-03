@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h2>Dashboard</h2>
+<a href="/add">Add Lead</a>
+<table border="1">
+<tr><th>Name</th><th>Email</th><th>Category</th><th>Priority</th><th>Score</th><th>Next Follow-up</th></tr>
+{% for lead in leads %}
+<tr>
+  <td>{{ lead.name }}</td><td>{{ lead.email }}</td><td>{{ lead.category }}</td>
+  <td>{{ lead.priority }}</td><td>{{ lead.score }}</td><td>{{ lead.next_follow_up }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Lead Category Distribution</h3>
+<canvas id="categoryChart" width="400" height="200"></canvas>
+<h3>Average Lead Scores by Category</h3>
+<canvas id="avgScoreChart" width="400" height="200"></canvas>
+
+<script>
+const categoryCounts = {{ category_counts|safe }};
+const categories = Object.keys(categoryCounts);
+const counts = Object.values(categoryCounts);
+
+const avgScores = {{ avg_scores|safe }};
+const avgLabels = Object.keys(avgScores);
+const avgValues = Object.values(avgScores);
+
+new Chart(document.getElementById('categoryChart').getContext('2d'), {
+    type: 'pie',
+    data: {
+        labels: categories,
+        datasets: [{
+            data: counts,
+            backgroundColor: ['#ff9999','#66b3ff','#99ff99']
+        }]
+    }
+});
+
+new Chart(document.getElementById('avgScoreChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: avgLabels,
+        datasets: [{
+            label: 'Average Score',
+            data: avgValues,
+            backgroundColor: 'rgba(255, 159, 64, 0.5)',
+            borderColor: 'rgba(255, 159, 64, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: { y: { beginAtZero: true } }
+    }
+});
+</script>
+</body>
