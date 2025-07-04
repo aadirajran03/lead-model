@@ -1,4 +1,12 @@
-def calculate_score(category, priority):
-    base_score = {'cold': 10, 'warm': 30, 'hot': 50}
-    bonus = {'low': 0, 'medium': 10, 'high': 20}
-    return base_score.get(category, 0) + bonus.get(priority, 0)
+class LeadScoring:
+    @staticmethod
+    def score(experience, location):
+        score = experience * 10
+        if location.lower() in ['mumbai', 'delhi', 'bangalore']:
+            score += 20
+            category = 'Hot'
+        elif experience > 5:
+            category = 'Experienced'
+        else:
+            category = 'Normal'
+        return score, category
