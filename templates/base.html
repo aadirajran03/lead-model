@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lead Management App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">🏠 Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">📊 Dashboard</a></li>
+            <li><a href="{{ url_for('add_manual') }}">➕ Add Lead</a></li>
+            <li><a href="{{ url_for('view_leads') }}">📋 View Leads</a></li>
+            <li><a href="{{ url_for('sync_fb_leads') }}">🔄 Sync FB Leads</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

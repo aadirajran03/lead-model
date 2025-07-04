@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="center">
+    <h2>All Leads</h2>
+    {% if leads %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Experience</th>
+                <th>Location</th>
+                <th>Category</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lead in leads %}
+            <tr>
+                <td>{{ lead[0] }}</td>
+                <td>{{ lead[1] }}</td>
+                <td>{{ lead[2] }}</td>
+                <td>{{ lead[3] }}</td>
+                <td>{{ lead[4] }}</td>
+                <td>{{ lead[5] }}</td>
+                <td>{{ lead[6] }}</td>
+                <td>{{ lead[7] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No leads found.</p>
+    {% endif %}
+</div>
+{% endblock %}

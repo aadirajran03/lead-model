@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="center">
+    <h2>Add New Lead</h2>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Full Name" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="text" name="phone" placeholder="Phone" required><br>
+        <input type="number" name="experience" placeholder="Experience (in years)" required><br>
+        <input type="text" name="location" placeholder="Location" required><br>
+        <button type="submit" class="button">Submit Lead</button>
+    </form>
+</div>
+{% endblock %}
